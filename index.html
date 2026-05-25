@@ -2,49 +2,79 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Mi Persona Favorita</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Para Skarleth</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;600&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div id="login-screen">
         <div class="login-container">
-            <h1>❤️ Nuestro Espacio</h1>
-            <p>Introduce nuestra fecha especial (DD/MM)</p>
-            <input type="text" id="password" placeholder="00/00">
+            <h1>Para Skarleth...</h1>
+            <p>Introduce nuestro aniversario<br><b>(01/05)</b></p>
+            <input type="text" id="password" placeholder="DD/MM" inputmode="numeric">
             <button onclick="checkPassword()">Entrar</button>
-            <p id="error-msg" style="display:none; color: #ff4d4d; margin-top: 10px;">Esa no es la fecha, inténtalo de nuevo 🥺</p>
+            <p id="error-msg" style="display:none; color: #ff4d4d; margin-top: 15px;">Esa no es la fecha, tontita ;(</p>
         </div>
     </div>
 
     <div id="main-content" class="hidden">
         <header>
-            <h1 class="title">Hola, mi amor</h1>
-            <p class="subtitle">Un pequeño rincón dedicado a nosotros</p>
+            <h1 class="title">Hola mi vida</h1>
+            <p class="subtitle">Eres mi lugar favorito en el mundo</p>
         </header>
 
-        <section class="heart-section">
-            <div class="heart"></div>
+        <section class="heart-canvas-container">
+            <canvas id="heartCanvas"></canvas>
         </section>
 
-        <section class="gallery">
-            <h2>Nuestros Momentos</h2>
-            <div class="grid">
-                <div class="photo-card"><p>Foto 1</p></div>
-                <div class="photo-card"><p>Foto 2</p></div>
-                <div class="photo-card"><p>Foto 3</p></div>
+        <section class="counter-section">
+            <div class="glass-card">
+                <h3>Tiempo caminando juntos:</h3>
+                <div id="timer">
+                    <div class="time-block"><span id="days">00</span><p>Días</p></div>
+                    <div class="time-block"><span id="hours">00</span><p>Hrs</p></div>
+                    <div class="time-block"><span id="minutes">00</span><p>Min</p></div>
+                    <div class="time-block"><span id="seconds">00</span><p>Seg</p></div>
+                </div>
             </div>
         </section>
 
-        <section class="message">
-            <h2>¿Por qué tú?</h2>
-            <p>Aquí puedes escribir una carta larga o una lista de razones por las que amas a tu pareja. Este espacio es totalmente tuyo para expresarte.</p>
+        <section class="love-list">
+            <div class="glass-card">
+                <h3>Cosas que amo de ti</h3>
+                <p id="reasons-container">Toca el botón para saber algo...</p>
+                <button onclick="showNextReason()" class="btn-more">Dime otra cosa ✨</button>
+            </div>
+        </section>
+
+        <section class="memory-cards">
+            <h2 style="text-align: center; margin-top: 40px;">Nuestros Recuerdos</h2>
+            <div class="cards-grid">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front" style="background-image: url('/IMG/foto1.jpg');"><span>📸</span></div>
+                        <div class="flip-card-back"><p>01/05 - El inicio de nuestra historia.</p></div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front" style="background-image: url('/IMG/foto2.jpg');"><span>✨</span></div>
+                        <div class="flip-card-back"><p>Esa sonrisa tuya que me tiene loco.</p></div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front" style="background-image: url('/IMG/foto3.jpg');"><span>💜</span></div>
+                        <div class="flip-card-back"><p>Por mil aventuras más a tu lado.</p></div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <footer>
-            <p>Hecho con ❤️ por nico</p>
+            <p>Hecho con amor por Nico</p>
         </footer>
     </div>
 

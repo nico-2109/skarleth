@@ -1,131 +1,283 @@
+/* IMPORTACIÓN DE FUENTES REDONDAS */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;600&family=Fredoka:wght@400;600&display=swap');
+
 :root {
-    --primary-color: #ff4d6d;
-    --bg-color: #fff0f3;
-    --text-color: #590d22;
+    --primary: #9d4edd;
+    --secondary: #7b2cbf;
+    --bg: #0d001a;
+    --text: #e0aaff;
+    --glass: rgba(36, 0, 70, 0.6);
+    --card-bg: #240046;
+    /* Variables de fuente */
+    --font-round: 'Comfortaa', cursive; /* Fuente para textos y botones */
+    --font-title: 'Fredoka', sans-serif; /* Fuente para títulos y números */
+}
+
+* { 
+    box-sizing: border-box; 
+    -webkit-tap-highlight-color: transparent; 
 }
 
 body {
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    font-family: var(--font-round);
+    background: radial-gradient(circle at center, #1e0035 0%, #0d001a 100%);
+    color: var(--text);
     overflow-x: hidden;
+    min-height: 100vh;
+    line-height: 1.6;
 }
 
-/* Pantalla de Bloqueo */
+/* Títulos y fuentes con peso */
+h1, h2, h3, .title, .time-block span {
+    font-family: var(--font-title);
+    letter-spacing: 0.5px;
+}
+
+.hidden { display: none; }
+
+/* --- PANTALLA DE LOGIN --- */
 #login-screen {
     position: fixed;
-    width: 100%;
-    height: 100vh;
-    background: #ffb3c1;
-    display: flex;
-    justify-content: center;
+    inset: 0;
+    background: #05000a;
+    display: flex; 
+    justify-content: center; 
     align-items: center;
-    z-index: 1000;
+    z-index: 2000;
     transition: opacity 0.5s ease;
 }
 
 .login-container {
-    text-align: center;
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center; 
+    padding: 40px; 
+    width: 85%; 
+    max-width: 400px;
+    background: var(--glass); 
+    border-radius: 35px; /* Bordes muy redondos como nube */
+    border: 2px solid var(--primary);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(157, 78, 221, 0.2);
 }
 
 input {
-    padding: 10px;
-    border: 2px solid var(--primary-color);
-    border-radius: 10px;
-    outline: none;
+    width: 100%; 
+    padding: 15px; 
+    margin: 20px 0;
+    border: 2px solid var(--primary); 
+    border-radius: 20px; 
+    background: rgba(0,0,0,0.4); 
+    color: white; 
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    font-family: var(--font-round);
+    outline: none;
+}
+
+input:focus {
+    box-shadow: 0 0 15px var(--primary);
 }
 
 button {
-    padding: 10px 20px;
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
+    width: 100%; 
+    padding: 15px; 
+    background: var(--primary);
+    color: white; 
+    border: none; 
+    border-radius: 20px; 
     font-weight: bold;
-    margin-left: 5px;
+    cursor: pointer; 
+    font-size: 1.1rem;
+    font-family: var(--font-round);
+    transition: all 0.3s ease;
 }
 
-/* Contenido Principal */
-.hidden { display: none; }
+button:active {
+    transform: scale(0.95);
+}
 
-header {
-    height: 40vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+/* --- HEADER --- */
+header { 
+    padding: 60px 20px 20px; 
+    text-align: center; 
+}
+
+.title { 
+    font-size: clamp(2.8rem, 10vw, 4.5rem); 
+    color: var(--primary); 
+    margin: 0; 
+    text-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+}
+
+.subtitle { 
+    font-size: clamp(1rem, 4vw, 1.3rem); 
+    opacity: 0.8; 
+    margin-top: 10px; 
+}
+
+/* --- CONTENEDOR DEL CORAZÓN (CANVAS) --- */
+.heart-canvas-container { 
+    width: 100%; 
+    min-height: 60vh; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+canvas { 
+    touch-action: none; 
+    max-width: 95vw; 
+}
+
+/* --- TARJETAS TIPO CRISTAL (GLASS CARDS) --- */
+.glass-card {
+    background: var(--glass); 
+    padding: 30px; 
+    border-radius: 35px; /* Estilo nube burbuja */
+    border: 1px solid rgba(157, 78, 221, 0.3); 
     text-align: center;
+    max-width: 650px; 
+    margin: 20px auto;
+    backdrop-filter: blur(8px);
+    width: 90%;
 }
 
-.title { font-family: 'Dancing Script', cursive; font-size: 4rem; margin: 0; color: var(--primary-color); }
-
-.heart-section { display: flex; justify-content: center; padding: 20px; }
-
-.heart {
-    background-color: var(--primary-color);
-    display: inline-block;
-    height: 50px;
-    margin: 0 10px;
-    position: relative;
-    top: 0;
-    transform: rotate(-45deg);
-    width: 50px;
-    animation: heartbeat 1.2s infinite;
+/* --- CONTADOR (TIMER) --- */
+#timer { 
+    display: flex; 
+    justify-content: center; 
+    gap: clamp(8px, 2vw, 15px); 
+    margin-top: 20px; 
 }
 
-.heart:before, .heart:after {
-    content: "";
-    background-color: var(--primary-color);
-    border-radius: 50%;
-    height: 50px;
-    position: absolute;
-    width: 50px;
+.time-block { 
+    background: var(--primary); 
+    padding: 15px 10px; 
+    border-radius: 22px; /* Redondeado suave */
+    min-width: clamp(70px, 18vw, 95px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    transition: transform 0.3s;
 }
 
-.heart:before { top: -25px; left: 0; }
-.heart:after { left: 25px; top: 0; }
-
-@keyframes heartbeat {
-    0% { transform: rotate(-45deg) scale(1); }
-    20% { transform: rotate(-45deg) scale(1.2); }
-    40% { transform: rotate(-45deg) scale(1.1); }
-    60% { transform: rotate(-45deg) scale(1.3); }
-    100% { transform: rotate(-45deg) scale(1); }
+.time-block:hover {
+    transform: translateY(-5px);
 }
 
-.gallery { padding: 50px 20px; text-align: center; }
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    max-width: 1000px;
-    margin: auto;
+.time-block span { 
+    font-size: 2rem; 
+    font-weight: 600; 
+    display: block; 
+    line-height: 1; 
 }
 
-.photo-card {
-    background: #ffccd5;
-    height: 250px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 5px solid white;
+.time-block p { 
+    font-size: 0.7rem; 
+    margin: 8px 0 0; 
+    text-transform: uppercase; 
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
-.message {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    text-align: center;
-    line-height: 1.8;
+/* --- TARJETAS QUE GIRAN (FLIP CARDS) --- */
+.cards-grid { 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 25px; 
+    padding: 40px 20px; 
 }
 
-footer { text-align: center; padding: 20px; font-size: 0.8rem; }
+.flip-card { 
+    width: 280px; 
+    height: 360px; 
+    perspective: 1000px; 
+}
+
+.flip-card-inner { 
+    position: relative; 
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+    transform-style: preserve-3d; 
+}
+
+.flip-card:hover .flip-card-inner { 
+    transform: rotateY(180deg); 
+}
+
+.flip-card-front, .flip-card-back { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    backface-visibility: hidden; 
+    border-radius: 35px; /* Bordes de nube */
+    border: 2px solid var(--primary); 
+    overflow: hidden;
+}
+
+.flip-card-front { 
+    background: var(--card-bg); 
+    background-size: cover; 
+    background-position: center; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 3.5rem; 
+}
+
+.flip-card-back { 
+    background: var(--secondary); 
+    color: white; 
+    transform: rotateY(180deg); 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 30px; 
+    font-size: 1.15rem; 
+}
+
+/* --- LLUVIA DE CORAZONES --- */
+.falling-heart {
+    position: fixed; 
+    top: -20px; 
+    color: var(--primary);
+    font-size: 20px; 
+    user-select: none; 
+    z-index: 1500;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall { 
+    to { transform: translateY(105vh) rotate(360deg); } 
+}
+
+/* --- BOTONES EXTRA --- */
+.btn-more { 
+    margin-top: 20px; 
+    background: transparent; 
+    border: 2px solid var(--primary); 
+    color: white; 
+    padding: 12px 30px; 
+    border-radius: 25px; 
+    cursor: pointer; 
+    transition: all 0.3s; 
+    font-weight: 600;
+    font-family: var(--font-round);
+}
+
+.btn-more:hover { 
+    background: var(--primary); 
+    box-shadow: 0 0 20px var(--primary);
+    transform: translateY(-2px);
+}
+
+/* --- FOOTER --- */
+footer { 
+    text-align: center; 
+    padding: 80px 20px 40px; 
+    opacity: 0.7; 
+    font-size: 0.9rem; 
+    letter-spacing: 1px;
+}
