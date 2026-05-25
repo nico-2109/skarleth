@@ -1,0 +1,131 @@
+:root {
+    --primary-color: #ff4d6d;
+    --bg-color: #fff0f3;
+    --text-color: #590d22;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Pantalla de Bloqueo */
+#login-screen {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #ffb3c1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+}
+
+.login-container {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+input {
+    padding: 10px;
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    outline: none;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+button {
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+/* Contenido Principal */
+.hidden { display: none; }
+
+header {
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.title { font-family: 'Dancing Script', cursive; font-size: 4rem; margin: 0; color: var(--primary-color); }
+
+.heart-section { display: flex; justify-content: center; padding: 20px; }
+
+.heart {
+    background-color: var(--primary-color);
+    display: inline-block;
+    height: 50px;
+    margin: 0 10px;
+    position: relative;
+    top: 0;
+    transform: rotate(-45deg);
+    width: 50px;
+    animation: heartbeat 1.2s infinite;
+}
+
+.heart:before, .heart:after {
+    content: "";
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    height: 50px;
+    position: absolute;
+    width: 50px;
+}
+
+.heart:before { top: -25px; left: 0; }
+.heart:after { left: 25px; top: 0; }
+
+@keyframes heartbeat {
+    0% { transform: rotate(-45deg) scale(1); }
+    20% { transform: rotate(-45deg) scale(1.2); }
+    40% { transform: rotate(-45deg) scale(1.1); }
+    60% { transform: rotate(-45deg) scale(1.3); }
+    100% { transform: rotate(-45deg) scale(1); }
+}
+
+.gallery { padding: 50px 20px; text-align: center; }
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.photo-card {
+    background: #ffccd5;
+    height: 250px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid white;
+}
+
+.message {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+    line-height: 1.8;
+}
+
+footer { text-align: center; padding: 20px; font-size: 0.8rem; }

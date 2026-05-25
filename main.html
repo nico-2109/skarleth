@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Persona Favorita</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="login-screen">
+        <div class="login-container">
+            <h1>❤️ Nuestro Espacio</h1>
+            <p>Introduce nuestra fecha especial (DD/MM)</p>
+            <input type="text" id="password" placeholder="00/00">
+            <button onclick="checkPassword()">Entrar</button>
+            <p id="error-msg" style="display:none; color: #ff4d4d; margin-top: 10px;">Esa no es la fecha, inténtalo de nuevo 🥺</p>
+        </div>
+    </div>
+
+    <div id="main-content" class="hidden">
+        <header>
+            <h1 class="title">Hola, mi amor</h1>
+            <p class="subtitle">Un pequeño rincón dedicado a nosotros</p>
+        </header>
+
+        <section class="heart-section">
+            <div class="heart"></div>
+        </section>
+
+        <section class="gallery">
+            <h2>Nuestros Momentos</h2>
+            <div class="grid">
+                <div class="photo-card"><p>Foto 1</p></div>
+                <div class="photo-card"><p>Foto 2</p></div>
+                <div class="photo-card"><p>Foto 3</p></div>
+            </div>
+        </section>
+
+        <section class="message">
+            <h2>¿Por qué tú?</h2>
+            <p>Aquí puedes escribir una carta larga o una lista de razones por las que amas a tu pareja. Este espacio es totalmente tuyo para expresarte.</p>
+        </section>
+
+        <footer>
+            <p>Hecho con ❤️ por nico</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
