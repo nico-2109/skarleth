@@ -1,4 +1,4 @@
-/* IMPORTACIÓN DE FUENTES REDONDAS */
+/* IMPORTACIÓN DE FUENTES */
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;600&family=Fredoka:wght@400;600&display=swap');
 
 :root {
@@ -8,9 +8,8 @@
     --text: #e0aaff;
     --glass: rgba(36, 0, 70, 0.6);
     --card-bg: #240046;
-    /* Variables de fuente */
-    --font-round: 'Comfortaa', cursive; /* Fuente para textos y botones */
-    --font-title: 'Fredoka', sans-serif; /* Fuente para títulos y números */
+    --font-round: 'Comfortaa', cursive;
+    --font-title: 'Fredoka', sans-serif;
 }
 
 * { 
@@ -28,7 +27,6 @@ body {
     line-height: 1.6;
 }
 
-/* Títulos y fuentes con peso */
 h1, h2, h3, .title, .time-block span {
     font-family: var(--font-title);
     letter-spacing: 0.5px;
@@ -36,7 +34,7 @@ h1, h2, h3, .title, .time-block span {
 
 .hidden { display: none; }
 
-/* --- PANTALLA DE LOGIN --- */
+/* --- PANTALLA DE LOGIN CON GLOW --- */
 #login-screen {
     position: fixed;
     inset: 0;
@@ -54,10 +52,10 @@ h1, h2, h3, .title, .time-block span {
     width: 85%; 
     max-width: 400px;
     background: var(--glass); 
-    border-radius: 35px; /* Bordes muy redondos como nube */
+    border-radius: 35px;
     border: 2px solid var(--primary);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 30px rgba(157, 78, 221, 0.2);
+    backdrop-filter: blur(12px); /* Efecto cristal */
+    box-shadow: 0 0 30px rgba(157, 78, 221, 0.4); /* Glow exterior */
 }
 
 input {
@@ -72,10 +70,11 @@ input {
     font-size: 1.2rem;
     font-family: var(--font-round);
     outline: none;
+    box-shadow: inset 0 0 10px rgba(157, 78, 221, 0.2);
 }
 
 input:focus {
-    box-shadow: 0 0 15px var(--primary);
+    box-shadow: 0 0 15px var(--primary), inset 0 0 10px rgba(157, 78, 221, 0.2);
 }
 
 button {
@@ -90,170 +89,76 @@ button {
     font-size: 1.1rem;
     font-family: var(--font-round);
     transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-button:active {
-    transform: scale(0.95);
-}
+button:active { transform: scale(0.95); }
 
-/* --- HEADER --- */
-header { 
-    padding: 60px 20px 20px; 
-    text-align: center; 
-}
-
+/* --- TITULO CON NEON --- */
+header { padding: 60px 20px 20px; text-align: center; }
 .title { 
     font-size: clamp(2.8rem, 10vw, 4.5rem); 
-    color: var(--primary); 
+    color: #fff; 
     margin: 0; 
-    text-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+    /* Efecto Neón */
+    text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary), 0 0 30px var(--secondary); 
 }
+.subtitle { font-size: clamp(1rem, 4vw, 1.3rem); opacity: 0.8; margin-top: 10px; }
 
-.subtitle { 
-    font-size: clamp(1rem, 4vw, 1.3rem); 
-    opacity: 0.8; 
-    margin-top: 10px; 
-}
+/* --- CANVAS --- */
+.heart-canvas-container { width: 100%; min-height: 60vh; display: flex; justify-content: center; align-items: center; }
+canvas { touch-action: none; max-width: 95vw; filter: drop-shadow(0 0 10px var(--primary)); }
 
-/* --- CONTENEDOR DEL CORAZÓN (CANVAS) --- */
-.heart-canvas-container { 
-    width: 100%; 
-    min-height: 60vh; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-}
-
-canvas { 
-    touch-action: none; 
-    max-width: 95vw; 
-}
-
-/* --- TARJETAS TIPO CRISTAL (GLASS CARDS) --- */
+/* --- CARDS CON EFECTO CRISTAL Y GLOW --- */
 .glass-card {
     background: var(--glass); 
     padding: 30px; 
-    border-radius: 35px; /* Estilo nube burbuja */
+    border-radius: 35px; 
     border: 1px solid rgba(157, 78, 221, 0.3); 
     text-align: center;
     max-width: 650px; 
     margin: 20px auto;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     width: 90%;
 }
 
-/* --- CONTADOR (TIMER) --- */
-#timer { 
-    display: flex; 
-    justify-content: center; 
-    gap: clamp(8px, 2vw, 15px); 
-    margin-top: 20px; 
-}
-
+/* --- BLOQUES DE TIEMPO CON GLOW --- */
+#timer { display: flex; justify-content: center; gap: clamp(8px, 2vw, 15px); margin-top: 20px; }
 .time-block { 
     background: var(--primary); 
     padding: 15px 10px; 
-    border-radius: 22px; /* Redondeado suave */
+    border-radius: 22px; 
     min-width: clamp(70px, 18vw, 95px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-    transition: transform 0.3s;
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.5); /* Glow neón */
 }
+.time-block span { font-size: 2rem; font-weight: 600; display: block; line-height: 1; color: #fff; }
+.time-block p { font-size: 0.7rem; margin: 8px 0 0; text-transform: uppercase; font-weight: bold; }
 
-.time-block:hover {
-    transform: translateY(-5px);
-}
-
-.time-block span { 
-    font-size: 2rem; 
-    font-weight: 600; 
-    display: block; 
-    line-height: 1; 
-}
-
-.time-block p { 
-    font-size: 0.7rem; 
-    margin: 8px 0 0; 
-    text-transform: uppercase; 
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-/* --- TARJETAS QUE GIRAN (FLIP CARDS) --- */
-.cards-grid { 
-    display: flex; 
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 25px; 
-    padding: 40px 20px; 
-}
-
-.flip-card { 
-    width: 280px; 
-    height: 360px; 
-    perspective: 1000px; 
-}
-
-.flip-card-inner { 
-    position: relative; 
-    width: 100%; 
-    height: 100%; 
-    text-align: center; 
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
-    transform-style: preserve-3d; 
-}
-
-.flip-card:hover .flip-card-inner { 
-    transform: rotateY(180deg); 
-}
-
+/* --- FOTOS --- */
+.cards-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; padding: 40px 20px; }
+.flip-card { width: 280px; height: 360px; perspective: 1000px; }
+.flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s; transform-style: preserve-3d; }
+.flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
 .flip-card-front, .flip-card-back { 
-    position: absolute; 
-    width: 100%; 
-    height: 100%; 
-    backface-visibility: hidden; 
-    border-radius: 35px; /* Bordes de nube */
-    border: 2px solid var(--primary); 
-    overflow: hidden;
+    position: absolute; width: 100%; height: 100%; 
+    backface-visibility: hidden; border-radius: 35px; 
+    border: 2px solid var(--primary); overflow: hidden;
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.2);
+}
+.flip-card-front { background: var(--card-bg); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; }
+.flip-card-back { background: var(--secondary); color: white; transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; padding: 30px; }
+
+/* --- OTROS --- */
+.falling-heart { 
+    position: fixed; top: -20px; color: var(--primary); font-size: 20px; 
+    user-select: none; z-index: 1500; pointer-events: none; 
+    animation: fall linear forwards; 
+    text-shadow: 0 0 8px var(--primary); /* Corazones brillantes */
 }
 
-.flip-card-front { 
-    background: var(--card-bg); 
-    background-size: cover; 
-    background-position: center; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 3.5rem; 
-}
+@keyframes fall { to { transform: translateY(105vh) rotate(360deg); } }
 
-.flip-card-back { 
-    background: var(--secondary); 
-    color: white; 
-    transform: rotateY(180deg); 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    padding: 30px; 
-    font-size: 1.15rem; 
-}
-
-/* --- LLUVIA DE CORAZONES --- */
-.falling-heart {
-    position: fixed; 
-    top: -20px; 
-    color: var(--primary);
-    font-size: 20px; 
-    user-select: none; 
-    z-index: 1500;
-    pointer-events: none;
-    animation: fall linear forwards;
-}
-
-@keyframes fall { 
-    to { transform: translateY(105vh) rotate(360deg); } 
-}
-
-/* --- BOTONES EXTRA --- */
 .btn-more { 
     margin-top: 20px; 
     background: transparent; 
@@ -261,23 +166,10 @@ canvas {
     color: white; 
     padding: 12px 30px; 
     border-radius: 25px; 
-    cursor: pointer; 
-    transition: all 0.3s; 
-    font-weight: 600;
-    font-family: var(--font-round);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.3);
+    transition: 0.3s;
 }
+.btn-more:hover { background: var(--primary); box-shadow: 0 0 20px var(--primary); }
 
-.btn-more:hover { 
-    background: var(--primary); 
-    box-shadow: 0 0 20px var(--primary);
-    transform: translateY(-2px);
-}
-
-/* --- FOOTER --- */
-footer { 
-    text-align: center; 
-    padding: 80px 20px 40px; 
-    opacity: 0.7; 
-    font-size: 0.9rem; 
-    letter-spacing: 1px;
-}
+footer { text-align: center; padding: 80px 20px 40px; opacity: 0.7; font-size: 0.9rem; }

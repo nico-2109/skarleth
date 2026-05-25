@@ -1,5 +1,4 @@
-// --- CONFIGURACIÓN INICIAL ---
-const fechaAniversario = "2026-05-01T00:00:00"; // Cambia el año al real de inicio
+const fechaAniversario = "2026-05-01T00:00:00"; 
 
 const razones = [
     "Amo tu risa escandalosa.",
@@ -42,7 +41,6 @@ function checkPassword() {
     }
 }
 
-// --- CORAZÓN DE PARTÍCULAS ---
 const canvas = document.getElementById('heartCanvas');
 const ctx = canvas.getContext('2d');
 let particles = [];
@@ -63,24 +61,19 @@ function initHeart() {
     const isMobile = window.innerWidth < 600;
     canvas.width = isMobile ? 380 : 800; 
     canvas.height = isMobile ? 380 : 550;
-    
     const center = { x: canvas.width / 2, y: canvas.height / 2 };
     const scale = isMobile ? 11 : 16; 
 
     const tempCanvas = document.createElement('canvas');
     const tCtx = tempCanvas.getContext('2d');
-    tempCanvas.width = canvas.width; 
-    tempCanvas.height = canvas.height;
-    
+    tempCanvas.width = canvas.width; tempCanvas.height = canvas.height;
     tCtx.fillStyle = 'white';
     const fontSize = isMobile ? 55 : 90;
-    tCtx.font = `bold ${fontSize}px Arial`;
+    tCtx.font = `bold ${fontSize}px Fredoka`;
     tCtx.textAlign = 'center';
     tCtx.fillText('Skarleth', center.x, center.y + (fontSize/3));
 
     const imgData = tCtx.getImageData(0, 0, canvas.width, canvas.height).data;
-
-    // Nombre
     for (let y = 0; y < canvas.height; y += 4) {
         for (let x = 0; x < canvas.width; x += 4) {
             if (imgData[(y * canvas.width + x) * 4] > 128) {
@@ -88,9 +81,7 @@ function initHeart() {
             }
         }
     }
-
-    // Corazón
-    for (let i = 0; i < (isMobile ? 1800 : 3500); i++) {
+    for (let i = 0; i < (isMobile ? 1500 : 3000); i++) {
         let t = Math.random() * 2 * Math.PI;
         let r = Math.sqrt(Math.random());
         let x = 16 * Math.pow(Math.sin(t), 3);
@@ -105,8 +96,7 @@ class Particle {
         this.baseX = x; this.baseY = y;
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.color = color; 
-        this.size = isName ? 1.5 : 1.2;
+        this.color = color; this.size = isName ? 1.5 : 1.2;
         this.density = (Math.random() * 25) + 5;
     }
     draw() {
@@ -133,12 +123,10 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
-// --- FUNCIONES EXTRA ---
 function updateTimer() {
     const start = new Date(fechaAniversario).getTime();
     const now = new Date().getTime();
     const diff = now - start;
-
     document.getElementById("days").innerText = Math.floor(diff / 86400000);
     document.getElementById("hours").innerText = Math.floor((diff / 3600000) % 24);
     document.getElementById("minutes").innerText = Math.floor((diff / 60000) % 60);
@@ -148,7 +136,6 @@ function updateTimer() {
 let reasonIdx = 0;
 function showNextReason() {
     const el = document.getElementById("reasons-container");
-    el.style.transition = "opacity 0.4s";
     el.style.opacity = 0;
     setTimeout(() => {
         el.innerText = razones[reasonIdx];
@@ -163,18 +150,8 @@ function startLoveRain() {
         heart.classList.add('falling-heart');
         heart.innerHTML = '💜';
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
         heart.style.animationDuration = Math.random() * 3 + 2 + 's';
         document.body.appendChild(heart);
         setTimeout(() => heart.remove(), 4000);
     }, 400);
-
-function initHeart() {
-    // ... dentro de initHeart, cambia la fuente del Canvas también para que combine
-    tCtx.font = `bold ${fontSize}px Fredoka`; // Cambiado Arial por Fredoka
-    tCtx.textAlign = 'center';
-    tCtx.fillText('Skarleth', center.x, center.y + (fontSize/3));
-    // ...
-}
-
 }
